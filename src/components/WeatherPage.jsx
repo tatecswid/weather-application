@@ -1,5 +1,6 @@
 import { auth, provider } from "../config/firebase-config";
 import { signOut } from "firebase/auth";
+import { WeatherFetcher } from "./WeatherFetcher";
 
 export const WeatherPage = () => {
     const signUserOut = () => {
@@ -8,8 +9,9 @@ export const WeatherPage = () => {
 
     return (
         <div>
-            <p>Hi there wlecome</p>
+            <p>Welcome {auth.currentUser?.displayName}</p>
             <button onClick={signUserOut}>Sign out</button>
+            <WeatherFetcher />
         </div>
     );
 };
