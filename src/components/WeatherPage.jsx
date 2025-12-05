@@ -1,15 +1,15 @@
-import { auth, provider } from "../config/firebase-config";
-import { signOut } from "firebase/auth";
 import { WeatherFetcher } from "./WeatherFetcher";
 import { WeatherCard } from "./WeatherCard";
 import { useState } from 'react';
+import { ErrorPage } from "./ErrorPage";
+import { useError } from "../utils/useError";
+import { LoadingPage } from "./LoadingPage";
 
 export const WeatherPage = () => {
     const [weatherData, setWeatherData] = useState([]);
-
-    const signUserOut = () => {
-        signOut(auth, provider);
-    };
+    const [locationName, setLocationName] = useState([]);
+    const { hasError, errorMessage, resetError, errorDetected } = useError();
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleWeatherData = (data) => {
         setWeatherData(data)
@@ -20,20 +20,39 @@ export const WeatherPage = () => {
         return fahrenheitTemp.toFixed(1);
     }
 
+    const toDayOfWeek = (date) => {
+        const dateObject = new Date(date);
+        const day = dateObject.getDay();
+        const daysOfTheWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+        return daysOfTheWeek[day];
+    }
+
+    if(isLoading) {
+        return <div className="weather-page"><LoadingPage /></div>;
+    }
+
     return (
-        <div>
-            <p>Welcome {auth.currentUser?.displayName}</p>
-            <button onClick={signUserOut}>Sign out</button>
-            <WeatherFetcher onWeatherFetched = { handleWeatherData } />
-            <div className="weather-card-holder">
-                { weatherData.length > 0 && weatherData.map(day => {
-                    return <WeatherCard
-                            temp = { toFahrenheit(day.main.temp) } 
-                            description = { day.weather[0].description } 
-                            iconURL = { `https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`} />
-                    })
-                }
-            </div>
+        <div className="weather-page">
+            <WeatherFetcher onWeatherFetched = { handleWeatherData } onCityFetched = {setLocationName} resetErrorState={resetError} onError={errorDetected} setLoading={setIsLoading}/>
+            {hasError
+                ? <ErrorPage message={errorMessage} />
+                :
+                <div>
+                    <div className="weather-card-holder">
+                    { weatherData.length > 0 && weatherData.map(dayData => {
+                        return <WeatherCard
+                                temp = { toFahrenheit(dayData.main.temp) } 
+                                description = { dayData.weather[0].description } 
+                                iconURL = { `https://openweathermap.org/img/wn/${dayData.weather[0].icon}@2x.png`} 
+                                dayOfWeek = { toDayOfWeek(dayData.dt_txt) } />
+                        })
+                    }
+                    </div>
+                    <div className="overall-information-container">
+                        { locationName.length > 0 && <h1> { locationName[0] }, { locationName[1] } </h1> }
+                    </div>
+                </div>
+            }
         </div>
     );
 };

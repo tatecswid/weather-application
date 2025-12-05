@@ -3,9 +3,10 @@ import { signInWithPopup } from "firebase/auth";
 import "../App.css"
 import googleLogo from "../pictures/googleLogo.png"
 
+// The login screen and the functionality to go with it:
 export const Login = () => {
     const signUserIn = async () => {
-        const result = signInWithPopup(auth, provider);
+        signInWithPopup(auth, provider);
     };
 
     return (
@@ -13,7 +14,7 @@ export const Login = () => {
             <div className="login-wrapper">
                 <h3>WEATHER DASHBOARD</h3>
                 <button onClick={signUserIn}>
-                    <img src={googleLogo} alt="google logo" width={20}/>
+                    <img src={googleLogo} alt="google logo" width={30}/>
                     <span>Sign in with Google</span>
                 </button>
             </div>
