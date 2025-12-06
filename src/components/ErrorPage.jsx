@@ -1,3 +1,4 @@
+// simple error page:
 export const ErrorPage = (props) => {
 
     return (

@@ -3,7 +3,7 @@ import { signInWithPopup } from "firebase/auth";
 import "../App.css"
 import googleLogo from "../pictures/googleLogo.png"
 
-// The login screen and the functionality to go with it:
+// The login screen and the functionality to go with it using firebase auth sign in with popup:
 export const Login = () => {
     const signUserIn = async () => {
         signInWithPopup(auth, provider);

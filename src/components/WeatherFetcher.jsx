@@ -5,9 +5,10 @@ export const WeatherFetcher = (props) => {
 
     /* fetch coordinates of the city */
     const fetchCoordinates = async () => {
+        props.resetErrorState();
+
         try {
             props.setLoading(true);
-            props.resetErrorState();
             const res = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${cityName},us&limit=5&appid=${process.env.REACT_APP_OPENWEATHER_API_KEY}`);
             const locationData = await res.json();
             props.onCityFetched([locationData[0].name, locationData[0].state]);

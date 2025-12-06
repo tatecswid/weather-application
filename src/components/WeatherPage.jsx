@@ -6,20 +6,19 @@ import { useError } from "../utils/useError";
 import { LoadingPage } from "./LoadingPage";
 
 export const WeatherPage = () => {
+    // State hooks:
     const [weatherData, setWeatherData] = useState([]);
     const [locationName, setLocationName] = useState([]);
-    const { hasError, errorMessage, resetError, errorDetected } = useError();
     const [isLoading, setIsLoading] = useState(false);
+    const { hasError, errorMessage, resetError, errorDetected } = useError();
 
-    const handleWeatherData = (data) => {
-        setWeatherData(data)
-    };
-
+    // Helper method for converting kelvin to fahrenheit:
     const toFahrenheit = (kelvinTemp) => {
         const fahrenheitTemp = (kelvinTemp - 273.15) * 9 / 5 + 32
         return fahrenheitTemp.toFixed(1);
     }
 
+    // Helper method for finding out what day of the week a date is:
     const toDayOfWeek = (date) => {
         const dateObject = new Date(date);
         const day = dateObject.getDay();
@@ -31,9 +30,10 @@ export const WeatherPage = () => {
         return <div className="weather-page"><LoadingPage /></div>;
     }
 
+    // Full weather page:
     return (
         <div className="weather-page">
-            <WeatherFetcher onWeatherFetched = { handleWeatherData } onCityFetched = {setLocationName} resetErrorState={resetError} onError={errorDetected} setLoading={setIsLoading}/>
+            <WeatherFetcher onWeatherFetched = { setWeatherData } onCityFetched = {setLocationName} resetErrorState={resetError} onError={errorDetected} setLoading={setIsLoading}/>
             {hasError
                 ? <ErrorPage message={errorMessage} />
                 :
