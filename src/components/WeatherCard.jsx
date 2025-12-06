@@ -1,6 +1,6 @@
 export const WeatherCard = (props) => {
 
-    // Simple title case method taken from Geeks for Geeks
+    // Simple title case method taken from Geeks for Geeks: https://www.geeksforgeeks.org/javascript/convert-string-to-title-case-in-javascript/
     function titleCase(s) {
         return s.toLowerCase()
                 .split(' ')
