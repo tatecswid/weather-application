@@ -18,6 +18,8 @@ export const WeatherFetcher = (props) => {
             await fetchWeatherData(lat, lon);
         } catch (err) {
             props.onError(`Could not find the location: ${cityName}`);
+            
+        } finally {
             props.setLoading(false);
         }
     }
@@ -31,7 +33,6 @@ export const WeatherFetcher = (props) => {
             return weather.dt_txt.includes("18:00:00");
         });
         props.onWeatherFetched(fiveDayForecastAtNoon);
-        props.setLoading(false);
     }
 
     // The input to enter the city and the button to submit
