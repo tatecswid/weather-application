@@ -126,3 +126,6 @@ dist
 # Vite logs
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+# Local Netlify folder
+.netlify

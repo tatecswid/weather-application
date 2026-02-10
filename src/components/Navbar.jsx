@@ -1,10 +1,10 @@
-import { auth, provider } from "../config/firebase-config";
+import { auth, googleProvider } from "../config/firebase-config";
 import { signOut } from "firebase/auth";
 
 // Component for the Navbar at the top of the screen
 export const NavBar = () => {
     const signUserOut = () => {
-        signOut(auth, provider);
+        signOut(auth, googleProvider);
     };
 
     return (

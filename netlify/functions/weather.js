@@ -9,8 +9,10 @@ export async function handler(event) {
         const weatherRes = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${process.env.OPENWEATHER_API_KEY}`);
         const weatherData = await weatherRes.json();
         const filteredForecast = weatherData.list.filter( item => item.dt_txt.includes("18:00:00") );
+        console.log(weatherData);
 
-        return{
+
+        return {
             statusCode: 200,
             body: JSON.stringify({
                 city: name,
