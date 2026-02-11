@@ -3,6 +3,7 @@ import { auth, googleProvider } from "../config/firebase-config";
 import { signInWithPopup } from "firebase/auth";
 import "../App.css"
 import googleLogo from "../pictures/googleLogo.png"
+import { Link } from "react-router-dom";
 
 // The login screen and the functionality to go with it using firebase auth sign in with popup:
 export const Login = () => {
@@ -13,12 +14,8 @@ export const Login = () => {
         signInWithPopup(auth, googleProvider);
     };
 
-    const register = async () => {
-
-    };
-
     const login = async () => {
-
+        
     };
 
     return (
@@ -43,7 +40,7 @@ export const Login = () => {
                 </button>
                 <br />
 
-                <p>Don't have an account? <a href="">Sign up</a></p>
+                <p>Don't have an account? <Link to="/signup">Sign up</Link></p>
 
             </div>
         </div>
