@@ -1,22 +1,30 @@
 import './App.css';
+import { Dashboard } from './components/Dashboard';
 import { Login } from './components/Login';
 import { SignUp } from './components/SignUp';
 
-import { WeatherPage } from './components/WeatherPage';
-import { NavBar } from './components/Navbar';
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
-import { Dashboard } from './components/Dashboard';
+import { ProtectedRoutes } from './utils/ProtectedRoutes';
+import { AuthProvider } from './contexts/AuthContext';
+import { PublicRoute } from './utils/PublicRoute';
 
 function App() {  
   return (
-    <div class="entire-page">
+    <div className={"entire-page"}>
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/login" element={<Login />} />
-          <Route path='/signup' element={<SignUp />}/>
-        </Routes>
+        <AuthProvider>
+          <Routes>
+            <Route element={<ProtectedRoutes/>}>
+              <Route path="/" element={<Dashboard />} />
+            </Route>
+            <Route element={<PublicRoute/>}>
+              <Route path="/login" element={<Login />} />
+              <Route path='/signup' element={<SignUp />}/>
+            </Route>
+          </Routes>
+        </AuthProvider>
       </BrowserRouter>
+      
     </div>
   );
 }

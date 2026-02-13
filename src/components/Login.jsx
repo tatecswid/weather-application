@@ -1,22 +1,26 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { auth, googleProvider } from "../config/firebase-config";
-import { signInWithPopup } from "firebase/auth";
+import { signInWithPopup, signInWithEmailAndPassword } from "firebase/auth";
 import "../App.css"
 import googleLogo from "../pictures/googleLogo.png"
 import { Link } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 // The login screen and the functionality to go with it using firebase auth sign in with popup:
 export const Login = () => {
     const loginEmail = useRef("");
     const loginPassword = useRef("");
+    const {user, loginGoogleUser} = useAuth();
 
-    const signUserIn = async () => {
-        signInWithPopup(auth, googleProvider);
+    const googleSignIn = async () => {
+        loginGoogleUser();
     };
 
     const login = async () => {
-        
+        signInWithEmailAndPassword(auth, loginEmail, loginPassword);
     };
+
 
     return (
         <div className="login-page">
@@ -34,7 +38,7 @@ export const Login = () => {
                 <br />
                 <button>Sign In</button>
                 <br />
-                <button onClick={signUserIn}>
+                <button onClick={googleSignIn}>
                     <img src={googleLogo} alt="google logo" width={10}/>
                     <span>Sign in with Google</span>
                 </button>
