@@ -1,4 +1,4 @@
-import { WeatherFetcher } from "./WeatherFetcher";
+import { WeatherSearcher } from "./WeatherSearcher";
 import { WeatherCard } from "./WeatherCard";
 import { useState } from 'react';
 import { ErrorPage } from "./ErrorPage";
@@ -11,12 +11,6 @@ export const WeatherPage = () => {
     const [locationName, setLocationName] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const { hasError, errorMessage, resetError, errorDetected } = useError();
-
-    // Helper method for converting kelvin to fahrenheit:
-    const toFahrenheit = (kelvinTemp) => {
-        const fahrenheitTemp = (kelvinTemp - 273.15) * 9 / 5 + 32
-        return fahrenheitTemp.toFixed(1);
-    }
 
     // Helper method for finding out what day of the week a date is:
     const toDayOfWeek = (date) => {
@@ -33,7 +27,7 @@ export const WeatherPage = () => {
     // Full weather page:
     return (
         <div className="weather-page">
-            <WeatherFetcher onWeatherFetched = { setWeatherData } onCityFetched = {setLocationName} resetErrorState={resetError} onError={errorDetected} setLoading={setIsLoading}/>
+            <WeatherSearcher onWeatherFetched = { setWeatherData } onCityFetched = {setLocationName} resetErrorState={resetError} onError={errorDetected} setLoading={setIsLoading}/>
             {hasError
                 ? <ErrorPage message={errorMessage} />
                 :
@@ -41,7 +35,7 @@ export const WeatherPage = () => {
                     <div className="weather-card-holder">
                     { weatherData.length > 0 && weatherData.map(dayData => {
                         return <WeatherCard
-                                temp = { toFahrenheit(dayData.main.temp) } 
+                                temp = { dayData.main.temp } 
                                 description = { dayData.weather[0].description } 
                                 iconURL = { `https://openweathermap.org/img/wn/${dayData.weather[0].icon}@2x.png`} 
                                 dayOfWeek = { toDayOfWeek(dayData.dt_txt) } />

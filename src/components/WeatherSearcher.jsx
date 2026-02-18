@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export const WeatherFetcher = (props) => {
+export const WeatherSearcher = (props) => {
     const [cityName, setCityName] = useState("");
 
     const fetchWeatherData = async () => {
