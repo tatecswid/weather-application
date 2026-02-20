@@ -1,9 +1,9 @@
-import "../App.css";
-import googleLogo from "../pictures/googleLogo.png";
+import "../../App.css";
+import googleLogo from "../../pictures/googleLogo.png";
 
 import { useRef } from "react";
 import { Link } from "react-router-dom";
-import { useAuth } from "../contexts/AuthContext";
+import { useAuth } from "../../contexts/AuthContext";
 
 // The login screen and the functionality to go with it using firebase auth sign in with popup:
 export const Login = () => {

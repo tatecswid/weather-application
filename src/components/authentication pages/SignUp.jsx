@@ -1,6 +1,6 @@
 import { useRef } from "react"
 import { Link } from "react-router-dom";
-import { useAuth } from "../contexts/AuthContext";
+import { useAuth } from "../../contexts/AuthContext";
 
 export const SignUp = () => {
     const registerEmail = useRef("");
@@ -21,7 +21,7 @@ export const SignUp = () => {
             <input type="password" onChange={ (e) => confirmPassword.current = e.target.value } />
 
             <br />
-            <button onClick={() => confirmPassword == registerPassword && signUpUser(registerEmail.current, registerPassword.current)}> Create Account </button>
+            <button onClick={() => confirmPassword === registerPassword && signUpUser(registerEmail.current, registerPassword.current)}> Create Account </button>
             <p>Already have an account? <Link to="/login">Sign In</Link></p>
         </div>
     );

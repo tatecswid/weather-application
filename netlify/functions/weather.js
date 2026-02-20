@@ -6,12 +6,12 @@ export async function handler(event) {
         const geoData = await geoRes.json();
         const { lat, lon, name, state } = geoData[0];
 
-        const weatherRes = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${process.env.OPENWEATHER_API_KEY}`);
+        const weatherRes = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${process.env.OPENWEATHER_API_KEY}&units=imperial`);
         const weatherData = await weatherRes.json();
         const filteredForecast = weatherData.list.filter( item => item.dt_txt.includes("18:00:00") );
         filteredForecast.map(e => {
             e.day_name = toDayOfWeek(e.dt_txt);
-            e.main.temp = toFahrenheit(e.main.temp);
+            e.main.temp = e.main.temp;
         })
 
         return {
@@ -34,7 +34,7 @@ export async function handler(event) {
 
 function sortCurrentWeatherData(currentWeatherData) {
     return {
-        temp: toFahrenheit(currentWeatherData.main.temp),
+        temp: currentWeatherData.main.temp,
         feels_like: currentWeatherData.main.feels_like,
         description : currentWeatherData.weather[0].description,
         visibility : currentWeatherData.visibility,
@@ -42,11 +42,6 @@ function sortCurrentWeatherData(currentWeatherData) {
         wind_speed : currentWeatherData.wind.speed,
         day_name : toDayOfWeek(currentWeatherData.dt_txt),
     };
-}
-
-const toFahrenheit = (kelvinTemp) => {
-    const fahrenheitTemp = (kelvinTemp - 273.15) * 9 / 5 + 32
-    return fahrenheitTemp.toFixed(1);
 }
 
 const toDayOfWeek = (date) => {

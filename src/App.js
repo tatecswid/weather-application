@@ -1,9 +1,9 @@
 import './App.css';
 import { Dashboard } from './components/Dashboard';
-import { Login } from './components/Login';
-import { SignUp } from './components/SignUp';
+import { Login } from './components/authentication pages/Login';
+import { SignUp } from './components/authentication pages/SignUp';
 
-import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ProtectedRoutes } from './utils/ProtectedRoutes';
 import { AuthProvider } from './contexts/AuthContext';
 import { PublicRoute } from './utils/PublicRoute';
