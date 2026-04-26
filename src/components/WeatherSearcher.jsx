@@ -34,7 +34,7 @@ export const WeatherSearcher = (props) => {
     return (
         <div className="weather-searcher">
             <div className="weather-searcher-inner">
-                <input onChange={(e) => setCityName(e.target.value)} maxLength={34} placeholder="City, State"/>
+                <input type="text" onChange={(e) => setCityName(e.target.value)} maxLength={34} placeholder="City, State"/>
                 <input onClick={fetchWeatherData} type="submit" value="Get Weather"/>
             </div>
         </div>

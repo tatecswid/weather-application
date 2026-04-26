@@ -5,7 +5,7 @@ import { WeatherCard } from "./WeatherCard";
 import { UserBar } from './UserBar'
 import { useState } from 'react';
 import { ErrorPage } from "./intermediate pages/ErrorPage";
-import { useError } from "../utils/useError";
+import { useError } from "../contexts/ErrorContext";
 import { LoadingPage } from "./intermediate pages/LoadingPage";
 import { CurrentWeatherInfoCard } from "./CurrentWeatherInfoCard";
 
@@ -23,7 +23,7 @@ export const Dashboard = () => {
     return (
         
         <div className="weather-page">
-            <UserBar />            
+            <UserBar />
             <WeatherSearcher onWeatherFetched = { setWeatherData } resetErrorState={resetError} onError={errorDetected} setLoading={setIsLoading}/>
             
             {hasError

@@ -37,7 +37,7 @@ function sortCurrentWeatherData(currentWeatherData) {
         temp: currentWeatherData.main.temp,
         feels_like: currentWeatherData.main.feels_like,
         description : currentWeatherData.weather[0].description,
-        visibility : currentWeatherData.visibility,
+        visibility : (currentWeatherData.visibility / 1609).toFixed(1),
         humidity : currentWeatherData.main.humidity,
         wind_speed : currentWeatherData.wind.speed,
         day_name : toDayOfWeek(currentWeatherData.dt_txt),
