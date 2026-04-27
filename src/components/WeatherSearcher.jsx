@@ -50,7 +50,8 @@ export const WeatherSearcher = (props) => {
     return (
         <div className="weather-searcher">
             <div className="weather-searcher-inner">
-                <input type="text" value={cityName} onChange={(e) => setCityName(e.target.value)} maxLength={34} placeholder="City, State"/>
+                <input type="text" value={cityName} onChange={(e) => setCityName(e.target.value) }
+                onKeyDown={(e) => e.key === "Enter" && fetchWeatherData() } maxLength={34} placeholder="City, State"/>
                 <input onClick={fetchWeatherData} type="submit" value="Get Weather"/>
             </div>
             <div className="dropdown-menu">
@@ -63,7 +64,6 @@ export const WeatherSearcher = (props) => {
                 .map((dropCityName) => (
                     <div className="dropdown-item" key={dropCityName} onClick={(e) => {
                         setCityName(dropCityName);
-                        console.log(dropCityName);
                     }}>{dropCityName}</div>
                 ))}
             </div>
