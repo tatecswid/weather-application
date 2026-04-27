@@ -1,3 +1,5 @@
+import '../../App.css'
+
 // simple loading page:
 export const LoadingPage = () => {
     

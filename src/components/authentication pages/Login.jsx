@@ -5,14 +5,19 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 import { useError } from "../../contexts/ErrorContext";
 import { isVisible } from "@testing-library/user-event/dist/utils";
+import { LoadingPage } from "../intermediate pages/LoadingPage";
 
 // The login screen and the functionality to go with it using firebase auth sign in with popup:
 export const Login = () => {
     const loginEmail = useRef("");
     const loginPassword = useRef("");
-    const { loginGoogleUser, loginUserEmailPassword } = useAuth();
+    const { loginGoogleUser, loginUserEmailPassword, loading } = useAuth();
     const { hasError, errorMessage, resetError } = useError();
     useEffect(() => { resetError(); }, []);
+
+    if(loading) {
+        return <div className="weather-page"><LoadingPage /></div>;
+    }
 
     return (
         <div className="login-page">
@@ -31,12 +36,13 @@ export const Login = () => {
                     <input type="password" onChange={ (e) => loginPassword.current = e.target.value } />
                 </div>
 
-                <button onClick={ () => loginUserEmailPassword(loginEmail.current, loginPassword.current) }>Sign In</button>
-
-                <button onClick={ loginGoogleUser }>
-                    <img src={googleLogo} alt="google logo" width={10}/>
-                    <span>Sign in with Google</span>
-                </button>
+                <div className="auth-buttons">
+                    <button onClick={ () => loginUserEmailPassword(loginEmail.current, loginPassword.current) }>Sign In</button>
+                    <button onClick={ loginGoogleUser }>
+                        <img src={googleLogo} alt="google logo" width={10}/>
+                        <span>Sign in with Google</span>
+                    </button>
+                </div>
 
                 <p>Don't have an account? <Link to="/signup">Sign up</Link></p>
                 {hasError && <p> { errorMessage.toString() } </p>}

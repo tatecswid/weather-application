@@ -488,3 +488,43 @@
 .login-wrapper p {
   margin: 0.4rem 0;
 }
+
+/* ===== LOADING PAGE ===== */
+.loading-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
+  font-family: 'Inter', sans-serif;
+  color: white;
+}
+
+/* Text */
+.loading-page h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+
+  /* subtle animation */
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+/* Animation */
+@keyframes pulse {
+  0% { opacity: 0.4; transform: scale(0.98); }
+  50% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0.4; transform: scale(0.98); }
+}
+
+.auth-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 1em;
+}
+
+.auth-buttons>button {
+  flex: 1;
+}

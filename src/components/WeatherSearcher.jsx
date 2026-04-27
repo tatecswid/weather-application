@@ -19,8 +19,6 @@ export const WeatherSearcher = (props) => {
 
             const weatherData = await res.json();
 
-            console.log(weatherData)
-
             props.onWeatherFetched(weatherData);
         } 
         catch (err) {
