@@ -269,6 +269,7 @@
 }
 .weather-searcher {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   margin: 4rem 0 3rem 0;
 }
@@ -527,4 +528,44 @@
 
 .auth-buttons>button {
   flex: 1;
+}
+
+.weather-searcher {
+  position: relative;
+  align-items: center;
+}
+
+.weather-searcher-inner {
+  width: 520px;
+  max-width: 90%;
+}
+
+/* 👇 THIS is the key part */
+.dropdown-menu {
+  position: absolute;
+  top: 100%;          /* right below input */
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 520px;
+  max-width: 90%;
+
+  background: rgba(255,255,255,0.95);
+  color: #222;
+
+  border-radius: 0 0 18px 18px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+
+  z-index: 10;
+}
+
+.dropdown-item {
+  padding: 0.9rem 1.4rem;
+  text-align: left;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.dropdown-item:hover {
+  background: #e9f5ff;
 }
