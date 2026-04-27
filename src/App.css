@@ -569,3 +569,89 @@
 .dropdown-item:hover {
   background: #e9f5ff;
 }
+
+@media (max-width: 600px) {
+  .weather-page {
+    padding: 1rem;
+    padding-top: 5rem;
+  }
+
+  .userbar {
+    padding: 0.8rem 1rem;
+  }
+
+  .userbar p {
+    font-size: 0.9rem;
+  }
+
+  .userbar button {
+    padding: 0.45rem 0.9rem;
+    font-size: 0.85rem;
+  }
+
+  .weather-searcher {
+    margin: 2rem 0;
+  }
+
+  .weather-searcher-inner {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .weather-searcher-inner input[type="text"] {
+    min-width: 0;
+    font-size: 1rem;
+    padding: 0.9rem 1rem;
+  }
+
+  .weather-searcher-inner input[type="submit"] {
+    font-size: 0.95rem;
+    padding: 0.9rem 1rem;
+    white-space: nowrap;
+  }
+
+  .dropdown-menu {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .current-weather-card {
+    width: 100%;
+    max-width: 100%;
+    padding: 1.5rem;
+    box-sizing: border-box;
+  }
+
+  .top-row,
+  .bottom-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+  }
+
+  .temperature-section,
+  .details-section {
+    text-align: center;
+  }
+
+  .main-temp {
+    font-size: 3rem;
+  }
+
+  .weather-card {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .login-wrapper,
+  .signup-wrapper {
+    width: 100%;
+    max-width: 100%;
+    padding: 1.5rem;
+    box-sizing: border-box;
+  }
+
+  .auth-buttons {
+    flex-direction: column;
+  }
+}
