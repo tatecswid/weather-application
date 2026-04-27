@@ -1,6 +1,6 @@
 import { Outlet, Navigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
-import { LoadingPage } from "../components/intermediate pages/LoadingPage";
+import { LoadingPage } from "../pages/intermediate pages/LoadingPage";
 
 export const PublicRoute = () => {
     const {user, loading} = useAuth();
