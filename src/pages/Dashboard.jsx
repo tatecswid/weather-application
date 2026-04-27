@@ -1,13 +1,13 @@
 import '../App.css'
 
-import { WeatherSearcher } from "./WeatherSearcher";
-import { WeatherCard } from "./WeatherCard";
-import { UserBar } from './UserBar'
+import { WeatherSearcher } from "../components/WeatherSearcher";
+import { WeatherCard } from "../components/WeatherCard";
+import { UserBar } from '../components/UserBar'
 import { useState } from 'react';
 import { ErrorPage } from "./intermediate pages/ErrorPage";
 import { useError } from "../contexts/ErrorContext";
 import { LoadingPage } from "./intermediate pages/LoadingPage";
-import { CurrentWeatherInfoCard } from "./CurrentWeatherInfoCard";
+import { CurrentWeatherInfoCard } from "../components/CurrentWeatherInfoCard";
 
 export const Dashboard = () => {
     // State hooks:
