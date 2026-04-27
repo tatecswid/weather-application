@@ -17,4 +17,4 @@ This project showcases my interest in web development. I built the frontend with
 5. A user can sign out when finished.
 
 ### Notice ###
-Frontend and serverless backend which were used to manage state and handle API requests respectively were written by myself. CSS styling for this project was assisted by AI-tools in order to generate a responsive, user-friendly UI.
+Frontend and serverless backend which were used to manage state and handle API requests respectively were written by myself. CSS styling for this project was assisted by AI-tools in order to generate a responsive, user-friendly UI. The original version of this project was done between November-December 2025, however the repository has been updating as I continue grow and learn to implement other features.
